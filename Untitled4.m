@@ -23,9 +23,10 @@ data= importdata([filename '.csv']);
 phi = data.data(:,2);
 i1 = data.data(:,9)./H_ave;
 i2 = data.data(:,10)./O_ave;
+[max_val,max_pos] = max(i1);
+phi = phi - phi(max_pos);
 
 figure(3);
-
 plot(phi,i2,'r');
 hold on;
 plot(phi,i1,'b');
@@ -41,9 +42,11 @@ grid on
 
 filename = 'thinsample_scan5'; 
 data= importdata([filename '.csv']);
-phi = data.data(:,2);
+phi = data.data(:,2)-mean(data.data(:,2));
 i1 = data.data(:,9)./H_ave;
 i2 = data.data(:,10)./O_ave;
+[max_val,max_pos] = max(i1);
+phi = phi - phi(max_pos);
 
 figure(3);
 plot(phi,i2,'r');hold on;
